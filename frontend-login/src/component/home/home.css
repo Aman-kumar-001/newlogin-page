@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.home-page{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    height: 400px;
+    width: 500px;
+    border: 1px solid #555555;
+    box-shadow: 10px 10px 15px #999999 , -10px -10px 15px #999999;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.box button{
+    cursor: pointer;
+    border: 1px solid #555555;
+    box-shadow: 5px 5px 5px #999999;
+    padding: 10px 10px ;
+
+}
+.box button:hover{
+      background-color: #999999;
+      color: black;
+}

@@ -25,8 +25,18 @@ const UserSchema = new mongoose.Schema({
 
 const Userdata = mongoose.model("UserData", UserSchema);
 
+
+app.post("/login", async (req ,res) => {
+    const loginUser = await Userdata.findOne({email :req.body.email})
+    if(loginUser){
+      if(password===req.body.password){
+        res.send({message : "login sc=uccessfull"});
+        
+      }
+    }
+})
+
 app.post("/register", async (req, res) => {
-//   const { name, email, password, phone, address } = req.body;
   const alredyuser = await Userdata.findOne({ email:req.body.email });
   if (alredyuser) {
     res.json({ message: "User already exists" });

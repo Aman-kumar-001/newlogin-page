@@ -26,7 +26,8 @@ function Home(props) {
           )}
         </div>
         <div>
-          <button onClick={handleLogout}>LOGOUT</button>
+          {props.data ?  <button onClick={handleLogout}>LOGOUT</button> : null }
+         
         </div>
       </div>
     </div>

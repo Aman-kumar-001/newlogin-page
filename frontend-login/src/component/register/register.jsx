@@ -102,7 +102,7 @@ function Register() {
           </div>
           <span>or</span>
           <div>
-            <button className="register-button">LOGIN</button>
+            <button className="register-button"  onClick={() => navigate('/login')}>LOGIN</button>
           </div>
         </form>
       </div>

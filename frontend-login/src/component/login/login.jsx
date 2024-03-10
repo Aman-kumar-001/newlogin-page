@@ -70,7 +70,7 @@ function Login({ondata}) {
           </div>
           <span>OR</span>
           <div>
-            <button className="login-button">REGISTER</button>
+            <button className="login-button" onClick={() => navigate('/register')}>REGISTER</button>
           </div>
         </form>
       </div>

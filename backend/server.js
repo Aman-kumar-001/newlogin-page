@@ -16,43 +16,40 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const UserSchema = new mongoose.Schema({
-    name : String ,
-    email : String,
-    password : String,
-    phone : Number,
-    address : String
+  name: String,
+  email: String,
+  password: String,
+  phone: Number,
+  address: String,
 });
 
 const Userdata = mongoose.model("UserData", UserSchema);
 
-
-app.post("/login", async (req ,res) => {
-    const loginUser = await Userdata.findOne({email :req.body.email})
-    if(loginUser){
-      if(password===req.body.password){
-        res.send({message : "login sc=uccessfull"});
-        
-      }
-    }
-})
+app.post("/login", async (req, res) => {
+  const {email , password} = req.body;
+  const loginUser = await Userdata.findOne({ email: req.body.email });
+  if (loginUser) {
+    if (password === loginUser.password) {
+      res.send({ message: "login sccuccessfull", user: loginUser });
+    } else res.send("password not matched");
+  } else res.send("User not found");
+});
 
 app.post("/register", async (req, res) => {
-  const alredyuser = await Userdata.findOne({ email:req.body.email });
+  const alredyuser = await Userdata.findOne({ email: req.body.email });
   if (alredyuser) {
     res.json({ message: "User already exists" });
   } else {
+    const user = new Userdata();
+    user.name = req.body.username;
+    user.email = req.body.email;
+    user.password = req.body.password;
+    user.phone = req.body.phone;
+    user.address = req.body.address;
+    const doc = await user.save();
 
-      const user = new Userdata();
-      user.name = req.body.username;
-      user.email = req.body.email;
-      user.password = req.body.password;
-      user.phone = req.body.phone;
-      user.address = req.body.address;
-      const doc = await user.save();
-
-      console.log(doc);
-      res.json("user added");
-    
+    console.log(doc);
+    res.json("user added");
   }
 });
 

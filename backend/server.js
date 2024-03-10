@@ -30,7 +30,7 @@ app.post("/login", async (req, res) => {
   const loginUser = await Userdata.findOne({ email: req.body.email });
   if (loginUser) {
     if (password === loginUser.password) {
-      res.send({ message: "login sccuccessfull", user: loginUser });
+      res.send({ message: "login sccuccessfull" });
     } else res.send({message :"password not matched"});
   } else res.send({message :"User not found"});
 });

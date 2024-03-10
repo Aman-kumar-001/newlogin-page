@@ -31,8 +31,8 @@ app.post("/login", async (req, res) => {
   if (loginUser) {
     if (password === loginUser.password) {
       res.send({ message: "login sccuccessfull", user: loginUser });
-    } else res.send("password not matched");
-  } else res.send("User not found");
+    } else res.send({message :"password not matched"});
+  } else res.send({message :"User not found"});
 });
 
 app.post("/register", async (req, res) => {

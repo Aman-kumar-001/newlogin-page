@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import "../login/login.css";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ondata}) {
   const navigate = useNavigate();
 
   const [user, Setuser] = useState({});
+  const [login , Setlogin] = useState(false);
+
+
 
   const handleInput = (e) => {
     Setuser({
@@ -23,9 +26,20 @@ function Login() {
       headers: {
         'Content-Type': 'application/json',
       },
-    });
-    const data = await response.json();
+    })
+    .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); 
+  })
+  .then(data => {
     console.log(data);
+    Setlogin(true);
+    ondata(true);
+    navigate('/')
+  }
+  )
   };
 
   return (

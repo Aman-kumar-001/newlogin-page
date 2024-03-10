@@ -1,7 +1,17 @@
 import React from "react";
 import "../home/home.css";
+import { useNavigate } from "react-router-dom";
 
-function home() {
+function Home(props) {
+  const navigate =useNavigate();
+
+  const handleLogout = () => {
+    // Call onLogout callback function passed from App.js
+    props.onLogout();
+    // Redirect to login page
+    navigate('/login');
+  };
+   
   return (
     <div className="home-page">
       <div className="box">
@@ -9,14 +19,18 @@ function home() {
           <h2>HOME </h2>
         </div>
         <div>
-          <p> welcome USER</p>{" "}
+        {props.data ? (
+            <p>Welcome USER</p>
+          ) : (
+            <p>Please log in to access your account.</p>
+          )}
         </div>
         <div>
-          <button>LOGOUT</button>
+          <button onClick={handleLogout}>LOGOUT</button>
         </div>
       </div>
     </div>
   );
 }
 
-export default home;
+export default Home;
